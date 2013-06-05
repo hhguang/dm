@@ -1,0 +1,2 @@
+<% i=-1 %>
+[<%= raw @students.map { |b| %[{"id":"#{i+=1}","name":"#{b.name}","tels":#{b.tel}}] }.join(',') %>]  

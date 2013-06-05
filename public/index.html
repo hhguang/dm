@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="dm">
+  <head>
+    <title>Ruby on Rails: Welcome aboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- Bootstrap -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  </head>
+  <body ng-controller="TodoCtrl">
+    <div class="row-fluid">
+    <ul class="thumbnails">
+      <li class="span4" ng-repeat="student in students" style="margin-left:2px;">
+        <div class="">
+        <div class="btn-group ">
+          <a class="btn {{student.btn}} " href="" ng-click="archive(student.id)"> {{student.name}} </a>
+          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li ng-repeat="tel in student.tels"><a href="tel://{{tel}} "><i class="icon-headphones"></i> {{tel}} </a></li>
+            
+            <li class="divider"></li>
+            <li><a href="" ng-click="unarchive(student.id)"><i class="i"></i> 取消</a></li>
+          </ul>
+        </div>
+        </div>
+      </li>
+    </ul>
+    </div>
+  </body>
+  <script type="text/javascript">
+
+    angular.module('dm', []).config(function($compileProvider){
+      $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+    });
+
+    function TodoCtrl($scope,$http) {
+
+      $http.get('students.json').success(function(data) {
+        $scope.students = data;
+      });
+
+      // $scope.students=[
+      //   {name:'黄海光',tels:['13802337833','987654'],id:0,btn:'btn-primary'},
+      //   {name:'hhg2',tels:['13802337833','987654'],id:1,btn:'btn-primary'},
+      //   {name:'hhg3',tels:['13802337833','987654'],id:2,btn:'btn-primary'},
+      //   {name:'hhg4',tels:['13802337833','987654'],id:3,btn:'btn-primary'},
+      //   {name:'hhg5',tels:['13802337833','987654'],id:4,btn:'btn-primary'},
+      //   {name:'hhg6',tels:['13802337833','987654'],id:5,btn:'btn-primary'},
+      //   {name:'hhg7',tels:['13802337833','987654'],id:6,btn:'btn-primary'},
+      //   {name:'hhg8',tels:['13802337833','987654'],id:7,btn:'btn-primary'},
+      //   {name:'hhg9',tels:['13802337833','987654'],id:8,btn:'btn-primary'},
+      //   {name:'hhg10',tels:['13802337833','987654'],id:9,btn:'btn-primary'}
+      // ];
+      
+      // $scope.groups=[]
+
+      // $scope.groups[0]=$scope.students.splice(0,3);
+
+      $scope.archive = function(index) {
+        $scope.students[index].btn='btn-danger';        
+      };
+
+      $scope.unarchive = function(index) {
+        $scope.students[index].btn='';        
+      }
+
+     }
+  </script>
+</html>
