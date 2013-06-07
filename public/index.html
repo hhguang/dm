@@ -11,6 +11,36 @@
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
   </head>
   <body ng-controller="TodoCtrl">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">点名</a>
+          <div class="nav-collapse collapse">            
+            <ul class="nav">              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle active" data-toggle="dropdown">班级:{{bj}} <b class="caret"></b></a>                
+                <ul class="dropdown-menu">
+                  <li ng-repeat="c in classes"><a href="" ng-click="get_by_class(c.bj)" >{{c.name}} </a></li>
+                  
+                </ul>
+              </li>
+              <li>
+                <p class="navbar-text">
+                {{students.length}} | {{remaining()}} |<span class="label label-important">{{students.length-remaining()}} </span>
+                </p>
+              </li>
+              
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="" style="margin:45px 0 0 0;">
     <div class="row-fluid">
     <ul class="thumbnails">
       <li class="span4" ng-repeat="student in students" style="margin-left:2px;">
@@ -29,6 +59,7 @@
       </li>
     </ul>
     </div>
+  </div>
   </body>
   <script type="text/javascript">
 
@@ -38,9 +69,31 @@
 
     function TodoCtrl($scope,$http) {
 
-      $http.get('students.json').success(function(data) {
-        $scope.students = data;
-      });
+      // $http.get('students.json').success(function(data) {
+      //   $scope.students = data;
+      // });
+
+      $scope.classes=[
+        {name:"高三1",bj:'1'},
+        {name:"高三2",bj:'2'},
+        {name:"高三3",bj:'3'},
+        {name:"高三4",bj:'4'},
+        {name:"高三5",bj:'5'},
+        {name:"高三6",bj:'6'},
+        {name:"高三7",bj:'7'},
+        {name:"高三8",bj:'8'},
+        {name:"高三9",bj:'9'},
+      ];
+
+      $scope.bj=''
+      $scope.count=0
+
+      $scope.get_by_class = function(bj){
+        $scope.bj=$scope.classes[bj-1].name
+        $http.get('students.json?bj='+bj).success(function(data) {
+          $scope.students = data;
+        });
+      };
 
       // $scope.students=[
       //   {name:'黄海光',tels:['13802337833','987654'],id:0,btn:'btn-primary'},
@@ -59,8 +112,17 @@
 
       // $scope.groups[0]=$scope.students.splice(0,3);
 
-      $scope.archive = function(index) {
-        $scope.students[index].btn='btn-danger';        
+      $scope.archive = function(index) {       
+        $scope.students[index].btn='btn-danger';  
+         
+      };
+
+       $scope.remaining = function() {
+        var count = 0;
+        angular.forEach($scope.students, function(student) {
+          count += student.btn ? 1 : 0;
+        });
+        return count;
       };
 
       $scope.unarchive = function(index) {

@@ -2,7 +2,8 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
+    @bj=params[:bj]
+    @students = Student.where(:bj=>@bj)
 
     respond_to do |format|
       format.html # index.html.erb

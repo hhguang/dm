@@ -5,12 +5,12 @@ namespace :utils do
   desc "import_score_item2 "
   task(:import_students  => :environment) do
     require 'csv'
-    bj=1
+    bj=3
     
-    CSV.foreach('d:\2.csv') do |row|
+    CSV.foreach('d:\g33.csv') do |row|
       if row[0]         
         
-        Student.create(name:row[0],tel:["#{row[2]}","#{row[3]}"])
+        Student.create(bj:bj,name:row[0],tel:["#{row[2]}","#{row[3]}"])
       end
     end
   end
