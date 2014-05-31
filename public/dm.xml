@@ -1,0 +1,39 @@
+ <?xml version="1.0" encoding="utf-8" ?>
+<urlset>
+<!-- urlset，urlset用来标记整个文档的开头，最少出现1次 最多出现1次 -->
+	<url>
+	<!-- url，url标记每条信息的开始和结束，最少出现0次 最多出现50000次 -->
+		<loc>http://lvyou.baidu.com/jinpingshan?no=0?fr=info</loc>
+		<!-- loc，该条数据的存放地址，最少出现1次 最多出现1次，类型为URL地址，最小长度1个字符	最大长度256个字符	必须符合正则表达式(http://)(.+) -->
+		<changefreq>always</changefreq>
+		<!-- changefreq，指该条数据的更新频率，最少出现0次 最多出现1次，类型为字符串，有效值为：always、hourly、daily、weekly、monthly、yearly、never -->
+		<priority>1.0</priority>
+		<!-- priority，用来指定此链接相对于其他链接的优先权比值，此值定于0.0-1.0之间，最少出现0次 最多出现1次，类型为小数，最小值为（包含）0.0	最大值为（包含）1.0 -->
+		<data>
+		<!-- data，，最少出现1次 最多出现1次 -->
+			<display>
+			<!-- display，最少出现1次 最多出现1次 -->
+				<name><![CDATA[点名]]></name>
+				<!-- 支持查询的名称；最少出现1次，最多出现1次 -->
+				<alias><![CDATA[]]></alias>
+				<!-- 查询名称的别名，多个用“$$”分割；最少出现0次 最多出现1次 -->	
+				<description><![CDATA[可以应用于各种需要清点参与人数的活动]]></description>
+				<!-- 应用简介；最少出现1次 最多出现1次 -->			
+				<city><![CDATA[]]></city>
+				<!-- 支持查询的城市，多个用“$$”分割；最少出现1次 最多出现1次 -->
+				<function><![CDATA[点名]]></function>
+                <!-- 在首页的可以使用的功能，多个用“$$”分割；最少出现1次 最多出现1次 -->
+				<subFunction><![CDATA[点名]]></subFunction>
+                <!-- 不在首页的功能，多个用“$$”分割；最少出现1次 最多出现1次 -->
+				<imageUrl></imageUrl>
+				<!-- 应用代表性的图片，用于展示；最少出现1次 最多出现1次 -->
+				<url><![CDATA[http://dm.stssyxx.info/]]></url>
+				<!-- 应用的url地址；最少出现1次 最多出现1次-->
+				<category><![CDATA[生活工具]]></category>
+				<!-- 一级目录，选填“生活工具”或“生活服务”；最少出现1次，最多出现1次 -->
+				<subcate><![CDATA[点名]]></subcate>
+				<!-- 二级目录，根据资源分类来填写；最少出现1次，最多出现1次 -->
+			</display>
+		</data>
+	</url>
+</urlset>

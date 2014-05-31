@@ -1,0 +1,46 @@
+<!--
+  This template gets placed in the Pet tab's <nav-view> directive.
+  It was wired up in the app config (app.js)
+  The 'pets' data comes from its $scope within PetIndexCtrl (controller.js)
+-->
+<view title="'Member'">
+  <content has-header="true" has-tabs="false">
+
+	<div class="button-bar bar-stable">
+    <a class="button">{{pets.length}}</a>
+    <a class="button">attend:{{remaining()}}</a>
+    <a class="button">unattend:{{pets.length-remaining()}}</a>
+  </div>
+
+	<ul class="list">
+
+	  <li class="item item-checkbox item-button-right" ng-repeat="pet in pets| filter:query">
+		 <label class="checkbox">
+		   <input type="checkbox" ng-model="pet.attend">
+		 </label>
+		 {{pet.title}}
+		 <button class="button button-positive" ng-click="show()">
+		  <i class="icon ion-ios7-telephone"></i>
+		</button>
+	  </li>
+
+	</ul>
+
+	<ul class="list">
+
+	  <li class="item item-checkbox item-button-right attend-{{student.attend}}" ng-repeat="student in students">
+		 <label class="checkbox">
+		   <input type="checkbox" ng-model="student.attend" >
+		 </label>
+		 {{student.name}}
+		 <button class="button button-positive" ng-click="show(student.tels)">
+		  <i class="icon ion-ios7-telephone"></i>
+		</button>
+	  </li>
+
+	</ul>
+
+  </content>
+</view>
+
+
