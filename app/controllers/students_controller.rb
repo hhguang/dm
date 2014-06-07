@@ -8,7 +8,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       # format.json { render json: @students }
-      format.json 
+      format.json
     end
   end
 
@@ -26,7 +26,7 @@ class StudentsController < ApplicationController
   # GET /students/new
   # GET /students/new.json
   def new
-    @student = Student.new
+    @student = Student.new(tel:[])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -59,9 +59,10 @@ class StudentsController < ApplicationController
   # PUT /students/1.json
   def update
     @student = Student.find(params[:id])
-
+    # @student.attend = params[:attend]
     respond_to do |format|
       if @student.update_attributes(params[:student])
+      # if @student.save
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
         format.json { head :no_content }
       else
@@ -70,6 +71,7 @@ class StudentsController < ApplicationController
       end
     end
   end
+
 
   # DELETE /students/1
   # DELETE /students/1.json
