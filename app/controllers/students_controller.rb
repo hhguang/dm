@@ -84,4 +84,18 @@ class StudentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def clear
+    @bj = params[:bj]
+    respond_to do |format|
+      if Student.update_all({:attend => false}, {:bj => @bj})
+        format.html { redirect_to @student, notice: 'Student was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
 end
